@@ -1,0 +1,108 @@
+﻿@model SOAnswer_44879268.Models.BudgetViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    .col-md-10 {
+        clear: both;
+        padding-left: 0px !important;
+    }
+
+    .col-md-2 {
+        text-align: left !important;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h2>Budget</h2>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <label>Month </label>
+        <select id="month" name="month">
+            @{ string[] Months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }; }
+            @for (var i = 0; i < 12; i++)
+            {
+                var m = i + 1;
+                if (Convert.ToInt32(ViewBag.month) == m)
+                {
+                    <option value=@m selected>@Months[i]</option>
+                }
+                else
+                {
+                    <option value=@m>@Months[i]</option>
+                }
+            }
+        </select>
+        <label>YEAR</label>
+        <select id="year" name="year">
+            @for (var c = 0; c < 1000; c++)
+            {
+                var yr = c + 2017;
+                if (Convert.ToInt32(ViewBag.year) == yr)
+                {
+                    <option value=@yr selected>
+                        @yr
+                    </option>
+                }
+                else
+                {
+                    <option value=@yr> @yr</option>
+                }
+            }
+        </select>
+        <br />
+        <br />
+        <div class="form-group">
+            <label>&nbsp; &nbsp;LIST OF YOUR DEPARTMENT</label>
+            <span class="">@Html.DropDownList("DEPARTMENTID", (SelectList)ViewBag.DeptList, new { @class = "form-control" })</span>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BUDGET, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("ShowBudget", null, new { @class = "form-control" })
+                @Html.HiddenFor(model => model.BUDGET, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BUDGET)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+    </div>
+                }
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>
+<script>
+    $(document).ready(function () {
+
+        $("#ShowBudget").change(function () {
+            var value = parseFloat($(this).val());
+            $("#BUDGET").val(value); //assign the current value to BUDGET field
+
+            if (!isNaN(value)) {
+                var result = value.toLocaleString(
+                    "en-US", // use a string like 'en-US' to override browser locale
+                    { minimumFractionDigits: 2 }
+                );
+                $(this).val(result);
+            }
+        })
+    })
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}
+
