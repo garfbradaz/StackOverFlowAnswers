@@ -1,0 +1,45 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SOAnswer_45164409_3",
+		"_postman_id": "b2d843f9-cd17-50e7-54e6-6b1631541652",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "XMLRequest",
+			"request": {
+				"url": "http://localhost:8681/api/values",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "JSONRequest",
+			"request": {
+				"url": "http://localhost:8681/api/values",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
